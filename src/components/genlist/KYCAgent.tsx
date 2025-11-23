@@ -145,15 +145,16 @@ export default function KYCAgent() {
     panNo: "",
     annualIncome: "",
   });
-  const [verificationStatus, setVerificationStatus] = useState<VerificationResult>({
-    name: false,
-    age: false,
-    address: false,
-    aadharCard: false,
-    panCard: false,
-    signature: false,
-    annualIncome: false,
-  });
+  const [verificationStatus, setVerificationStatus] =
+    useState<VerificationResult>({
+      name: false,
+      age: false,
+      address: false,
+      aadharCard: false,
+      panCard: false,
+      signature: false,
+      annualIncome: false,
+    });
   const [isAgentSpeaking, setIsAgentSpeaking] = useState(false);
   const [showDocumentOverlay, setShowDocumentOverlay] = useState(false);
   const [currentDocument, setCurrentDocument] = useState("");
@@ -309,10 +310,12 @@ export default function KYCAgent() {
       <div className="kyc-form-container">
         <div className="kyc-form-card">
           <div className="kyc-form-header">
-            <h1 className="kyc-form-title">🎯 KYC Verification</h1>
-            <p className="kyc-form-subtitle">Please enter your details to begin</p>
+            <h1 className="kyc-form-title">KYC Verification</h1>
+            <p className="kyc-form-subtitle">
+              Please enter your details to begin
+            </p>
           </div>
-          
+
           <div className="kyc-form-fields">
             <div className="kyc-form-group">
               <label className="kyc-label">Full Name</label>
@@ -324,7 +327,7 @@ export default function KYCAgent() {
                 placeholder="John Doe"
               />
             </div>
-            
+
             <div className="kyc-form-row">
               <div className="kyc-form-group">
                 <label className="kyc-label">Age</label>
@@ -336,19 +339,21 @@ export default function KYCAgent() {
                   placeholder="25"
                 />
               </div>
-              
+
               <div className="kyc-form-group">
                 <label className="kyc-label">Annual Income</label>
                 <input
                   type="text"
                   value={userDetails.annualIncome}
-                  onChange={(e) => handleInputChange("annualIncome", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("annualIncome", e.target.value)
+                  }
                   className="kyc-input"
                   placeholder="₹500,000"
                 />
               </div>
             </div>
-            
+
             <div className="kyc-form-group">
               <label className="kyc-label">Address</label>
               <textarea
@@ -359,19 +364,21 @@ export default function KYCAgent() {
                 rows={3}
               />
             </div>
-            
+
             <div className="kyc-form-row">
               <div className="kyc-form-group">
                 <label className="kyc-label">Aadhar Number</label>
                 <input
                   type="text"
                   value={userDetails.aadharNo}
-                  onChange={(e) => handleInputChange("aadharNo", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("aadharNo", e.target.value)
+                  }
                   className="kyc-input"
                   placeholder="1234-5678-9012"
                 />
               </div>
-              
+
               <div className="kyc-form-group">
                 <label className="kyc-label">PAN Number</label>
                 <input
@@ -384,10 +391,15 @@ export default function KYCAgent() {
               </div>
             </div>
           </div>
-          
+
           <button
             onClick={handleStartVerification}
-            disabled={!userDetails.name || !userDetails.age || !userDetails.aadharNo || !userDetails.panNo}
+            disabled={
+              !userDetails.name ||
+              !userDetails.age ||
+              !userDetails.aadharNo ||
+              !userDetails.panNo
+            }
             className="kyc-submit-button"
           >
             Start Verification →
@@ -403,27 +415,31 @@ export default function KYCAgent() {
       <div className="kyc-agent-panel">
         <div className="kyc-agent-content">
           <div className="kyc-agent-avatar-wrapper">
-            <div className={`kyc-agent-avatar ${isAgentSpeaking ? "speaking" : ""}`}>
+            <div
+              className={`kyc-agent-avatar ${
+                isAgentSpeaking ? "speaking" : ""
+              }`}
+            >
               🤖
             </div>
-            {isAgentSpeaking && (
-              <div className="kyc-agent-pulse-ring"></div>
-            )}
+            {isAgentSpeaking && <div className="kyc-agent-pulse-ring"></div>}
           </div>
-          
+
           <h2 className="kyc-agent-title">KYC Agent</h2>
           <p className="kyc-agent-status">
             {isAgentSpeaking ? "🎙️ Speaking..." : "👂 Listening..."}
           </p>
         </div>
-        
+
         {/* Verification Status */}
         <div className="kyc-verification-progress">
           <h3 className="kyc-progress-title">Verification Progress</h3>
           <div className="kyc-progress-grid">
             {Object.entries(verificationStatus).map(([key, value]) => (
               <div key={key} className="kyc-progress-item">
-                <span className={`kyc-progress-icon ${value ? "verified" : ""}`}>
+                <span
+                  className={`kyc-progress-icon ${value ? "verified" : ""}`}
+                >
                   {value ? "✅" : "⏳"}
                 </span>
                 <span className="kyc-progress-label">
@@ -444,7 +460,7 @@ export default function KYCAgent() {
           muted
           className="kyc-camera-feed"
         />
-        
+
         {/* Document Overlay */}
         {showDocumentOverlay && (
           <div className="kyc-document-overlay">
@@ -458,7 +474,7 @@ export default function KYCAgent() {
             </div>
           </div>
         )}
-        
+
         {/* User Info Overlay */}
         <div className="kyc-user-info">
           <div className="kyc-user-details">
